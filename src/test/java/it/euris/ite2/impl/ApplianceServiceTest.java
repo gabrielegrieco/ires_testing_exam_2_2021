@@ -57,8 +57,10 @@ public class ApplianceServiceTest  {
         mockedApplianceDTO.setApplianceId(dummyId);
         Mockito.when(applianceRepository.findByApplianceId(any())).thenReturn(java.util.Optional.ofNullable(mockedAppliance));
         Mockito.when(applianceMapper.mapToDto(any())).thenReturn(mockedApplianceDTO);
+
         //act
         ApplianceDTO mockedDto = systemUnderTest.getAppliance(dummyId);
+
         //assert
         assertTrue(mockedDto.isConnected());
         assertEquals(dummyId, mockedDto.getApplianceId());
