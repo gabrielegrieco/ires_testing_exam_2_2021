@@ -2,6 +2,8 @@ package it.euris.ite2.entity;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
+
+import lombok.Builder;
 import lombok.Data;
 
 @Data

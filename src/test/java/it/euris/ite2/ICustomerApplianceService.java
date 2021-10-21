@@ -1,6 +1,7 @@
-package it.euris.ite2.service;
+package it.euris.ite2;
 
 import it.euris.ite2.dataobject.appliance.ApplianceDTO;
+
 import java.util.List;
 import java.util.UUID;
 

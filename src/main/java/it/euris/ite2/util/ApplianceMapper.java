@@ -1,4 +1,4 @@
-package it.euris.ite2.service.util;
+package it.euris.ite2.util;
 
 import it.euris.ite2.dataobject.appliance.ApplianceDTO;
 import it.euris.ite2.entity.Appliance;

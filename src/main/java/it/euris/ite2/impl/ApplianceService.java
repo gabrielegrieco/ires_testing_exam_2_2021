@@ -1,5 +1,7 @@
-package it.euris.ite2.service.impl;
+package it.euris.ite2.impl;
 
+import it.euris.ite2.IApplianceService;
+import it.euris.ite2.ICustomerApplianceService;
 import it.euris.ite2.dataobject.appliance.ApplianceDTO;
 import it.euris.ite2.entity.Appliance;
 import it.euris.ite2.exception.EccNotFoundException;
@@ -10,18 +12,18 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import it.euris.ite2.repository.ApplianceRepository;
-import it.euris.ite2.service.IApplianceService;
-import it.euris.ite2.service.ICustomerApplianceService;
-import it.euris.ite2.service.util.ApplianceMapper;
+import it.euris.ite2.util.ApplianceMapper;
 
 public class ApplianceService implements IApplianceService, ICustomerApplianceService {
 
   private final ApplianceRepository applianceRepository;
 
+  // il mapper sostanzialmente mi trasforma l'oggetto appliance da model a dto a seconda dell' operazione
   private final ApplianceMapper applianceMapper;
 
   private final long timeToLive;
 
+  // constructor
   public ApplianceService(ApplianceRepository applianceRepository, ApplianceMapper applianceMapper, long timeToLive) {
     this.applianceRepository = applianceRepository;
     this.applianceMapper = applianceMapper;
@@ -29,12 +31,14 @@ public class ApplianceService implements IApplianceService, ICustomerApplianceSe
   }
 
   @Override
+  // appliance = apparecchiatura, questa in sostanza è una getbyId del model che mi restituisce il dato in Dto
   public ApplianceDTO getAppliance(String applianceId) {
     Optional<Appliance> applianceFound = applianceRepository.findByApplianceId(applianceId);
     if (applianceFound.isEmpty()) {
       throw new EccNotFoundException(String.format("Appliance not found with id %s", applianceId));
     }
     Appliance appliance = applianceFound.get();
+    // questa parte verifica se l' appliance è connesso o no, e restituisce il Dto con la connessione relativa
     boolean connected = appliance.isConnected() && !isConnectionDateExpired(appliance);
     appliance.setConnected(connected);
     return applianceMapper.mapToDto(appliance);

@@ -1,7 +1,7 @@
 package it.euris.ite2.controller;
 
 import it.euris.ite2.dataobject.appliance.ApplianceDTO;
-import it.euris.ite2.service.IApplianceService;
+import it.euris.ite2.IApplianceService;
 
 public class ApplianceController {
 
