@@ -31,14 +31,12 @@ public class ApplianceService implements IApplianceService, ICustomerApplianceSe
   }
 
   @Override
-  // appliance = apparecchiatura, questa in sostanza è una getbyId del model che mi restituisce il dato in Dto
   public ApplianceDTO getAppliance(String applianceId) {
     Optional<Appliance> applianceFound = applianceRepository.findByApplianceId(applianceId);
     if (applianceFound.isEmpty()) {
       throw new EccNotFoundException(String.format("Appliance not found with id %s", applianceId));
     }
     Appliance appliance = applianceFound.get();
-    // questa parte verifica se l' appliance è connesso o no, e restituisce il Dto con la connessione relativa
     boolean connected = appliance.isConnected() && !isConnectionDateExpired(appliance);
     appliance.setConnected(connected);
     return applianceMapper.mapToDto(appliance);
