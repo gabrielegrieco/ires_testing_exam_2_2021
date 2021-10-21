@@ -42,8 +42,8 @@ public class ApplianceServiceTest  {
     }
 
     @Test
-    @DisplayName("GivenApplianceId_WhenGetAppliance_ThenMockedApplianceDtoFoundAndApplianceShouldBeEquals")
-    void GivenApplianceIdWhenGetApplianceThenMockedApplianceDtoFoundAndApplianceShouldBeEquals(){
+    @DisplayName("GivenApplianceId_WhenGetAppliance_ThenMockedDtoShouldBeConnectedAndDummyIdShouldBeEqualsToMockedDtoId")
+    void GivenApplianceIdWhenGetApplianceThenMockedDtoShouldBeConnectedAndDummyIdShouldBeEqualsToMockedDtoId(){
 
         //arrange
         String dummyId = "1";
@@ -66,8 +66,11 @@ public class ApplianceServiceTest  {
     }
 
     @Test
-    @DisplayName("givenApplianceDto_WhenUpdateApplianceConnectionTime_ThenShouldReturnConnectedWithUpdatedConnectionTime")
-    void givenApplianceDtoWhenUpdateApplianceConnectionTimeThenShouldReturnConnectedWithUpdatedConnectionTime(){
+    @DisplayName("givenApplianceDto_WhenUpdateApplianceConnectionTime_" +
+            "ThenSetConnectedMethodShouldBeCall," +
+            "MockedApplianceShouldBeConnected" +
+            "AndUpdatedApplianceDTOEqualsToMyApplianceDtoToReturn")
+    void givenApplianceDtoWhenUpdateApplianceConnectionTimeThenUpdatedApplianceDTOShpldEqualsToMyApplianceDtoToReturn(){
 
         // arrange
         ApplianceDTO myApplianceDto = Mockito.mock(ApplianceDTO.class);
@@ -87,8 +90,12 @@ public class ApplianceServiceTest  {
     }
 
     @Test
-    @DisplayName("givenApplianceDto_WhenSaveAppliance_ThenShouldReturnMockedDto")
-    void givenApplianceDtoWhenSaveApplianceThenShouldReturnMockedAppliance(){
+    @DisplayName("givenApplianceDto_WhenSaveAppliance_ThenMapToEntityMethodShouldHasCalled" +
+            "ApplianceRepositorySavemethodShouldHasCalled" +
+            "MapToDtoMethodShouldHasCalled" +
+            "mockedApplianceMethodShouldHasCalled" +
+            "SavedApplianceDTOShouldEqualsMockedAppliaceDto")
+    void givenApplianceDtoWhenSaveApplianceThenSavedApplianceDTOShouldEqualsMockedAppliaceDto(){
 
         // arrange
         ApplianceDTO mockedAppliaceDto = Mockito.mock(ApplianceDTO.class);
@@ -111,7 +118,8 @@ public class ApplianceServiceTest  {
 
 
     @Test
-    @DisplayName("givenApplianceDto_WhenGetCustomerAppliance_ThenShouldReturnedListShouldEqualsToMockedConnectedAppliancesList")
+    @DisplayName("givenCustomerId_WhenGetCustomerAppliance_ThenApplianceListShouldNotEmpty" +
+            "ApplianceDtoListContainsApplianceDto")
     void givenApplianceDTOListWhenGetCustomerAppliancesThenShouldReturnedListShouldEqualsToMockedConnectedAppliancesList(){
 
         //arrange
